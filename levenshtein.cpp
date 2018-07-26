@@ -14,8 +14,7 @@ public:
   typedef vector<T> M;
   typedef typename M::size_type size_type;
 
-  const size_type rows;
-  const size_type cols;
+  const size_type rows, cols;
 
   matrix(size_type rows, size_type cols):
     rows(rows), cols(cols),
