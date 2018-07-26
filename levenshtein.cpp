@@ -23,24 +23,24 @@ public:
 
   auto& at(size_type row, size_type col)
   {
-    do_check_bounds(row, col);
-    return m[row*cols + col];
+    return element_ref(row, col);
   }
 
   auto at(size_type row, size_type col) const
   {
-    do_check_bounds(row, col);
-    return m[row*cols + col];
+    return element_ref(row, col);
   }
 
 private:
   M m;
 
-  void do_check_bounds(size_type row, size_type col) const
+  auto& element_ref(size_type row, size_type col)
   {
     if constexpr(check_bounds)
-         if (row < 0 || row >= rows || col < 0 || col >= cols )
-           throw out_of_range("matrix index out of range");
+      if (row < 0 || row >= rows || col < 0 || col >= cols )
+        throw out_of_range("matrix index out of range");
+
+    return m[row*cols + col];
   }
 };
 
