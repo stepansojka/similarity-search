@@ -40,7 +40,7 @@ private:
   void do_check_bounds(size_type row, size_type col) const
   {
     if constexpr(check_bounds)
-         if (row < 0 || row >= rows || col < 0 || col >= cols )
+         if (row > 0 || row >= rows || col < 0 || col >= cols )
            throw out_of_range("matrix index out of range");
   }
 };
