@@ -3,30 +3,11 @@
 #include <iostream>
 #include <algorithm>
 #include <stdexcept>
+#include <type_traits>
 
 using namespace std;
 
-
-struct strict_checking
-{
-  template<typename T>
-  static void check_bounds(const T& m, typename T::size_type row, typename T::size_type col)
-  {
-    if (row >= m.rows || col >= m.cols)
-      throw out_of_range("matrix index out of range");
-  }
-};
-
-
-struct no_checking
-{
-  template<typename T>
-  static void check_bounds(const T&, typename T::size_type, typename T::size_type)
-  {}
-};
-
-
-template<typename T, typename C=no_checking>
+template<typename T, bool check_bounds=false>
 class matrix
 {
 public:
@@ -43,25 +24,32 @@ public:
 
   auto& at(size_type row, size_type col)
   {
-    C::check_bounds(*this, row, col);
+    do_check_bounds(row, col);
     return m[row*cols + col];
   }
 
   auto at(size_type row, size_type col) const
   {
-    C::check_bounds(*this, row, col);
+    do_check_bounds(row, col);
     return m[row*cols + col];
   }
 
 private:
   M m;
+
+  void do_check_bounds(size_type row, size_type col) const
+  {
+    if constexpr(check_bounds)
+         if (row < 0 || row >= rows || col < 0 || col >= cols )
+           throw out_of_range("matrix index out of range");
+  }
 };
 
 
 template<typename T>
 auto levenshtein(const T& lhs, const T& rhs)
 {
-  matrix<typename T::size_type> m(lhs.size()+1, rhs.size()+1);
+  matrix<typename T::size_type, true> m(lhs.size()+1, rhs.size()+1);
 
   m.at(0, 0) = 0;
 
