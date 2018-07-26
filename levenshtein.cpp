@@ -7,7 +7,7 @@
 
 using namespace std;
 
-template<typename T, bool check_bounds=false>
+template<typename T, bool check_bounds=true>
 class matrix
 {
 public:
@@ -40,7 +40,7 @@ private:
   void do_check_bounds(size_type row, size_type col) const
   {
     if constexpr(check_bounds)
-         if (row > 0 || row >= rows || col < 0 || col >= cols )
+         if (row < 0 || row >= rows || col < 0 || col >= cols )
            throw out_of_range("matrix index out of range");
   }
 };
@@ -49,7 +49,7 @@ private:
 template<typename T>
 auto levenshtein(const T& lhs, const T& rhs)
 {
-  matrix<typename T::size_type, true> m(lhs.size()+1, rhs.size()+1);
+  matrix<typename T::size_type, false> m(lhs.size()+1, rhs.size()+1);
 
   m.at(0, 0) = 0;
 
