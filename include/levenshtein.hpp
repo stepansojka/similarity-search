@@ -4,6 +4,14 @@
 
 namespace levenshtein
 {
+  /*
+    Computes Levenshtein distance of two strings using
+    the Wagner-Fisher algorithm.
+
+    see:
+      https://en.wikipedia.org/wiki/Levenshtein_distance
+      https://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm
+  */
   template<typename T>
   auto levenshtein_distance(const T& lhs, const T& rhs)
   {
