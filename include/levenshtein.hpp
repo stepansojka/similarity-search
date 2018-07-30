@@ -1,3 +1,6 @@
+#ifndef LEVENSHTEIN_HPP
+#define LEVENSHTEIN_HPP
+
 #include <algorithm>
 
 #include "matrix.hpp"
@@ -40,3 +43,5 @@ namespace levenshtein
     return m.at(m.rows-1, m.cols-1);
   }
 }
+
+#endif

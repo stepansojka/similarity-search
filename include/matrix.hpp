@@ -1,3 +1,6 @@
+#ifndef LEVENSHTEIN_MATRIX_HPP
+#define LEVENSHTEIN_MATRIX_HPP
+
 #include <vector>
 #include <stdexcept>
 
@@ -40,3 +43,5 @@ namespace levenshtein
     }
   };
 }
+
+#endif
