@@ -18,7 +18,7 @@ namespace bk
 
     Note that strict equality is not required. It is enough that
     the query key is similar to one of the keys present in the tree.
-    
+
     see:
       https://signal-to-noise.xyz/post/bk-tree/
       http://blog.notdot.net/2007/4/Damn-Cool-Algorithms-Part-1-BK-Trees
@@ -47,7 +47,7 @@ namespace bk
         i->second.insert(value);
     }
 
-    auto search(T value, unsigned threshold = std::numeric_limits<unsigned>::max())
+    auto search(T value, unsigned threshold = std::numeric_limits<unsigned>::max()) const
     {
       auto tau = threshold;
       T result;
@@ -61,7 +61,7 @@ namespace bk
     T m_value;
     metric m_metric;
 
-    void search_rec(const T& value, unsigned& tau, T& result)
+    void search_rec(const T& value, unsigned& tau, T& result) const
     {
       auto d = m_metric(value, m_value);
       if (d <= tau)
