@@ -10,6 +10,19 @@
 
 namespace bk
 {
+  /*
+    Burkhard-Keller Tree implementation.
+
+    The Burkhard-Keller Tree can be used for searching a set of keys
+    to find a key which is closest to a given query key.
+
+    Note that strict equality is not required. It is enough that
+    the query key is similar to one of the keys present in the tree.
+    
+    see:
+      https://signal-to-noise.xyz/post/bk-tree/
+      http://blog.notdot.net/2007/4/Damn-Cool-Algorithms-Part-1-BK-Trees
+   */
   template <typename T>
   struct bk_tree
   {
