@@ -7,7 +7,7 @@
 using namespace std;
 using levenshtein::levenshtein_distance;
 
-TEST(levenshtein_test, equal)
+TEST(levenshtein_distance_test, equal)
 {
   EXPECT_EQ(levenshtein_distance("hello"s, "hello"s), 0);
 }
