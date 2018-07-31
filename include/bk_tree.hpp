@@ -14,8 +14,7 @@ namespace bk
   template <typename T>
   struct bk_tree
   {
-    typedef std::shared_ptr<bk_tree> shared_ptr;
-    typedef std::map<unsigned, shared_ptr> children;
+    typedef std::map<unsigned, std::shared_ptr<bk_tree> > children;
     typedef std::function<unsigned(const T&, const T&)> metric;
 
     bk_tree(T value, metric metric = levenshtein::levenshtein_distance<T>):
