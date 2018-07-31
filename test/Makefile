@@ -1,5 +1,5 @@
 build:
-	g++ -std=c++17 -I../include -lgtest -g levenshtein_test.cpp -o levenshtein_test
+	g++ -std=c++17 -I../include -lgtest -g run_tests.cpp bk_tree_test.cpp levenshtein_test.cpp -o test
 
 test: build
-	./levenshtein_test
+	./test

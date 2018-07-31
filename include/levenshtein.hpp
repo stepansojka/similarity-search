@@ -16,7 +16,7 @@ namespace levenshtein
       https://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm
   */
   template<typename T>
-  auto levenshtein_distance(const T& lhs, const T& rhs)
+  unsigned levenshtein_distance(const T& lhs, const T& rhs)
   {
     matrix<typename T::size_type, false> m(lhs.size()+1, rhs.size()+1);
 

@@ -1,4 +1,5 @@
 #include "levenshtein.hpp"
+#include "bk_tree.hpp"
 
 #include <gtest/gtest.h>
 #include <string>
@@ -46,10 +47,4 @@ TEST(levenshtein_distance_test, all_ops_combined)
   EXPECT_EQ(levenshtein_distance("hello world"s, "helo wooXld"s), 3);
   EXPECT_EQ(levenshtein_distance(
     "this is not a love song"s, "this zzis not a lv xong"s), 5);
-}
-
-int main(int argc, char **argv)
-{
-  ::testing::InitGoogleTest(&argc, argv);
-  return RUN_ALL_TESTS();
 }
