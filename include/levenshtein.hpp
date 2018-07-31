@@ -18,7 +18,7 @@ namespace levenshtein
   template<typename T>
   unsigned levenshtein_distance(const T& lhs, const T& rhs)
   {
-    matrix<typename T::size_type, false> m(lhs.size()+1, rhs.size()+1);
+    matrix<unsigned, false> m(lhs.size()+1, rhs.size()+1);
 
     m.at(0, 0) = 0;
 
