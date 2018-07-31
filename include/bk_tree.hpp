@@ -16,22 +16,22 @@ namespace bk
   {
     typedef std::shared_ptr<bk_tree> shared_ptr;
     typedef std::map<unsigned, shared_ptr> children;
-    typedef std::function<unsigned(const T&, const T&)> distance_fn;
+    typedef std::function<unsigned(const T&, const T&)> metric;
 
-    bk_tree(T value, distance_fn distance_fn = levenshtein::levenshtein_distance<T>):
+    bk_tree(T value, metric metric = levenshtein::levenshtein_distance<T>):
       m_value(value),
-      m_distance_fn(distance_fn)
+      m_metric(metric)
     {}
 
     void insert(T value)
     {
-      auto d = m_distance_fn(value, m_value);
+      auto d = m_metric(value, m_value);
       if (d == 0)
         return;
 
       auto i = m_children.find(d);
       if (i == m_children.end())
-        m_children[d] = std::make_shared<bk_tree>(value, m_distance_fn);
+        m_children[d] = std::make_shared<bk_tree>(value, m_metric);
       else
         i->second->insert(value);
     }
@@ -48,11 +48,11 @@ namespace bk
   private:
     children m_children;
     T m_value;
-    distance_fn m_distance_fn;
+    metric m_metric;
 
     void search_rec(const T& value, unsigned& tau, T& result)
     {
-      auto d = m_distance_fn(value, m_value);
+      auto d = m_metric(value, m_value);
       if (d <= tau)
         {
           tau = d;
