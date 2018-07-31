@@ -1,7 +1,6 @@
 #ifndef BK_TREE_HPP
 #define BK_TREE_HPP
 
-#include <memory>
 #include <map>
 #include <functional>
 #include <tuple>
@@ -14,7 +13,7 @@ namespace bk
   template <typename T>
   struct bk_tree
   {
-    typedef std::map<unsigned, std::shared_ptr<bk_tree> > children;
+    typedef std::map<unsigned, bk_tree> children;
     typedef std::function<unsigned(const T&, const T&)> metric;
 
     bk_tree(T value, metric metric = levenshtein::levenshtein_distance<T>):
@@ -30,9 +29,9 @@ namespace bk
 
       auto i = m_children.find(d);
       if (i == m_children.end())
-        m_children[d] = std::make_shared<bk_tree>(value, m_metric);
+        m_children.insert({d, bk_tree<T>(value, m_metric)});
       else
-        i->second->insert(value);
+        i->second.insert(value);
     }
 
     auto search(T value, unsigned threshold = std::numeric_limits<unsigned>::max())
@@ -62,7 +61,7 @@ namespace bk
            i != m_children.end() && (i->first <= d + tau);
            ++i)
         {
-          i->second->search_rec(value, tau, result);
+          i->second.search_rec(value, tau, result);
         }
     }
   };
