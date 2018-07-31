@@ -29,7 +29,7 @@ namespace bk
 
       auto i = m_children.find(d);
       if (i == m_children.end())
-        m_children.insert({d, bk_tree<T>(value, m_metric)});
+        m_children.insert({d, bk_tree(value, m_metric)});
       else
         i->second.insert(value);
     }
