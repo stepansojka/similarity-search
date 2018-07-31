@@ -1,5 +1,5 @@
 # similarity-search
-Work in progress - at the moment this only contains levenshtein distance.
+Work in progress.
 
 Dependencies
 ===============
