@@ -11,6 +11,9 @@ namespace levenshtein
     Computes Levenshtein distance of two strings using
     the Wagner-Fisher algorithm.
 
+    Levenshtein distance is a string metric, i. e. a measure
+    of similarity between two strings.
+
     see:
       https://en.wikipedia.org/wiki/Levenshtein_distance
       https://en.wikipedia.org/wiki/Wagner%E2%80%93Fischer_algorithm
