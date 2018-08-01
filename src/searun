@@ -1,0 +1,4 @@
+#!/bin/bash
+
+exec docker run -v $HOME/seastar/:/seastar -v $HOME/similarity-search/src:/similarity-search -p 10000:10000 -u $(id -u):$(id -g) -w /similarity-search -t seastar-dev "$@"
+
