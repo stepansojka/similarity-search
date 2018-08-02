@@ -25,14 +25,14 @@ namespace levenshtein
 
     m.at(0, 0) = 0;
 
-    for (auto i = 1; i < m.rows; ++i)
+    for (auto i = 1U; i < m.rows; ++i)
       m.at(i, 0) = i;
 
-    for (auto j = 1; j < m.cols; ++j)
+    for (auto j = 1U; j < m.cols; ++j)
       m.at(0, j) = j;
 
-    for (auto i = 1; i < m.rows; ++i)
-      for (auto j = 1; j < m.cols; ++j)
+    for (auto i = 1U; i < m.rows; ++i)
+      for (auto j = 1U; j < m.cols; ++j)
         if (lhs[i-1] == rhs[j-1])
           m.at(i, j) = m.at(i-1, j-1);
         else
